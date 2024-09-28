@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import './Chat.css'; // Import CSS for background animation
 
-const socket = io('http://localhost:5000');
+const socket = io(import.meta.env.VITE_baseAPI);
 
 
 // Define message type
@@ -39,7 +39,7 @@ const ChatPage: React.FC = () => {
             // Fetch chat history when the component mounts
             const fetchMessages = async () => {
               try {
-                const res = await axios.get('http://localhost:5000/api/messages');
+                const res = await axios.get(import.meta.env.VITE_messagesAPI);
                 setMessages(res.data); // Set the fetched messages to state
               } catch (error) {
                 console.error('Error fetching messages:', error);
